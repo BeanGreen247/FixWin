@@ -36,3 +36,9 @@ echo Running System file check - procedure 4 of 4
 sfc /scannow
 echo If SFC found some errors and could not repair, re-run the script after a reboot.
 del null
+
+echo "Script by Tomas Mozdren @ beangreen247.github.io 2020"
+
+echo "Done. Press a key to exit"
+pause
+exit
