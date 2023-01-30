@@ -5,25 +5,26 @@ echo ! The 1st procedure checks the disk - regular Checkdisk - 1 phase
 echo ! The 2nd procedure checks and repairs the Windows Component Files - 2 phases
 echo ! The 3rd procedure checks and repairs the Windows image - 4 phases
 echo ! The 4th procedure uses System file check to check system files - 1 phase
+echo ! The 5th procedure uses Fixing Installer problems - 2 phases
 echo ! In Windows 7 only CHKDSK and SFC work, the rest is new (Windows 8 +)
 echo PRESS ANY KEY TO CONTINUE.
 pause >null
 del null
 cls
-echo Checking and fixing the Windows partition - procedure 1 of 4
+echo Checking and fixing the Windows partition - procedure 1 of 5
 chkdsk c: /scan
 echo Fixing problems
 chkdsk c: /f
 del null
 cls
-echo Windows component files check - procedure 2 of 4
+echo Windows component files check - procedure 2 of 5
 dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 echo Phase 1 of 2 completed
 dism.exe /online /Cleanup-Image /SPSuperseded
 echo Phase 2 of 2 completed
 del null
 cls
-echo Checking the integrity of the Windows image - procedure 3 of 4
+echo Checking the integrity of the Windows image - procedure 3 of 5
 DISM /Online /Cleanup-Image /CheckHealth
 echo Phase 1 of 3 completed
 DISM /Online /Cleanup-Image /ScanHealth
@@ -32,12 +33,19 @@ DISM /Online /Cleanup-Image /RestoreHealth
 echo Phase 3 of 3 completed 
 del null
 cls
-echo Running System file check - procedure 4 of 4
+echo Running System file check - procedure 4 of 5
 sfc /scannow
 echo If SFC found some errors and could not repair, re-run the script after a reboot.
 del null
+cls
+echo Fixing Installer problems - procedure 5 of 5
+echo Phase 1 of 2 completed
+msiexec /unreg
+echo Phase 2 of 2 completed
+msiexec /regserver
+del null
 
-echo "Script by Tomas Mozdren @ beangreen247.github.io 2020"
+echo "Script by Tomas Mozdren @ beangreen247.github.io 2022"
 
 echo "Done. Press a key to exit"
 pause
