@@ -1,5 +1,5 @@
 # FixWin
-A script that fixes most problem with Windows 10
+A script that fixes most problem with Windows 10/8.1/8/7
 
 The script has the following procedures.
 * The 1st procedure checks the disk - regular Checkdisk - 1 phase
